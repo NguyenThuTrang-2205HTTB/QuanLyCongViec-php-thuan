@@ -33,40 +33,122 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Dashboard - TodoListApp</title>
+  <title>Dashboard - App Quản Lý Công Việc</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    /* ==== NỀN CHUNG ==== */
     body {
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      background: linear-gradient(to right, #e17ae7ff, #c6a6e2ff);
       min-height: 100vh;
       color: #333;
+      font-family: "Segoe UI", sans-serif;
     }
+
+    /* ==== THANH NAV ==== */
+    .navbar {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ==== KHUNG DANH SÁCH CÔNG VIỆC ==== */
+    .bg-container {
+      background: linear-gradient(145deg, #ffffff, #f6f7fb);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    /* Hiệu ứng ánh sáng mềm */
+    .bg-container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 0;
+      pointer-events: none; /* ✅ Cho phép click bình thường */
+    }
+
+    .bg-container:hover::before {
+      opacity: 1;
+    }
+
+    .bg-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      transform: translateY(-3px);
+    }
+
+    /* ==== TIÊU ĐỀ ==== */
+    .bg-container h3 {
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(90deg, #7b2ff7, #f107a3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: background-position 0.5s ease;
+      background-size: 200%;
+    }
+
+    .bg-container h3:hover {
+      background-position: right center;
+    }
+
+    /* ==== CARD CÔNG VIỆC ==== */
     .card {
       border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       transition: transform 0.3s, box-shadow 0.3s;
+      background: #fff;
+      position: relative;
+      z-index: 1;
     }
+
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     }
+
     .badge-status {
       font-weight: 500;
       padding: 0.5em 0.75em;
       font-size: 0.85rem;
     }
-    .navbar, .form-select {
-      border-radius: 10px;
-    }
+
+    /* ==== FORM LỌC ==== */
     .filter-form select {
       min-height: 50px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
-    .bg-container {
-      background-color: rgba(255,255,255,0.95);
-      border-radius: 15px;
-      padding: 2rem;
+
+    .filter-form select:hover {
+      border-color: #a66ad4;
+      box-shadow: 0 3px 8px rgba(166,106,212,0.15);
     }
+
+    /* ==== CÁC HIỆU ỨNG KHÁC ==== */
     .due-soon { color: #dc3545; font-weight: 600; }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #7b2ff7, #f107a3);
+      border: none;
+      transition: background-position 0.4s ease;
+      background-size: 200%;
+    }
+
+    .btn-primary:hover {
+      background-position: right center;
+    }
+
   </style>
 </head>
 <body>
@@ -74,8 +156,8 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="container">
     <!-- Logo và tên ứng dụng -->
     <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
-      <img src="asset/OIP.png" alt="Logo" width="40" height="40" class="me-2 rounded-circle shadow-sm">
-      TodoListApp
+      <img src="asset/logo.png" alt="Logo" width="40" height="40" class="me-2 rounded-circle shadow-sm">
+      App Quản Lý Công Việc 
     </a>
     <div class="d-flex align-items-center ms-auto">
       <span class="me-3 text-muted">Xin chào, <?php echo htmlspecialchars($user['username']); ?></span>

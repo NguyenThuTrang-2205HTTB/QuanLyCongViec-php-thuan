@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      background: linear-gradient(135deg,  #e17ae7ff, #c6a6e2ff);
       height: 100vh;
       display: flex;
       align-items: center;
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="login-card">
     <div class="brand">
       <i class="bi bi-check2-square"></i>
-      <h4>ToDoListApp</h4>
+      <h4>App Quản Lý Công Việc</h4>
       <p class="text-muted">Quản lý công việc hiệu quả</p>
     </div>
     <?php if ($errors): ?>

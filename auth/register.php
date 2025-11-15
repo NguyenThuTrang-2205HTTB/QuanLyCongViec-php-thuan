@@ -44,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Đăng ký tài khoản - ToDoLListApp</title>
+  <title>Đăng ký tài khoản - App Quản Lý Công Việc</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      background: linear-gradient(135deg, #e17ae7ff, #c6a6e2ff);
       height: 100vh;
       display: flex;
       align-items: center;
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="brand">
       <i class="bi bi-person-plus"></i>
       <h4>Tạo tài khoản mới</h4>
-      <p class="text-muted">Quản lý công việc cùng ToDoListApp</p>
+      <p class="text-muted">Quản lý công việc cùng App Quản Lý Công Việc</p>
     </div>
 
     <?php if ($errors): ?>
